@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://bf7ac1gwb6is6"]
+
+[ext_resource type="Texture2D" uid="uid://cjograanstoq" path="res://sprites/TerrainSet.png" id="1_fm0r2"]
+[ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_sa31g"]
+[ext_resource type="Script" path="res://scenes/levels/Towers.gd" id="3_7aykm"]
+[ext_resource type="PackedScene" uid="uid://dkktgt5xu4ept" path="res://scenes/actorsss/enemy_1.tscn" id="3_52c4a"]
+[ext_resource type="Script" path="res://scenes/levels/Enemies.gd" id="4_h2dur"]
+[ext_resource type="PackedScene" uid="uid://kges880beft0" path="res://scenes/actorsss/tower_1.tscn" id="4_jw08p"]
+[ext_resource type="PackedScene" uid="uid://b67ew37r8gyb4" path="res://scenes/actorsss/effects/attack_arrow.tscn" id="6_eg2gy"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ifn2b"]
+texture = ExtResource("1_fm0r2")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_24s0y"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_ifn2b")
+
+[sub_resource type="Curve2D" id="Curve2D_6s7ni"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1, 193, 0, 0, 0, 0, 708, 201, 0, 0, 0, 0, 714, 711, 0, 0, 0, 0, 1213, 703, 0, 0, 0, 0, 1212, 196, 0, 0, 0, 0, 1024, 194)
+}
+point_count = 6
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_sa31g")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_24s0y")
+format = 2
+layer_0/name = "Color"
+layer_0/tile_data = PackedInt32Array(65538, 65536, 0, 65537, 65536, 0, 65536, 65536, 0, 65539, 65536, 0, 65543, 65536, 1, 131077, 65536, 0, 65540, 65536, 0, 65541, 65536, 0, 327686, 65536, 0, 327687, 65536, 0, 327688, 65536, 0, 327689, 65536, 0, 262153, 65536, 0, 196617, 65536, 0, 131081, 65536, 0, 65545, 65536, 0, 196613, 65536, 0, 262149, 65536, 0, 327685, 65536, 0, 65544, 65536, 0, 262154, 0, 0, 196618, 0, 0, 131082, 0, 0, 65546, 0, 0, 10, 0, 0, 9, 0, 0, 8, 0, 0, 7, 0, 0, 6, 0, 0, 5, 0, 0, 4, 0, 0, 3, 0, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 65542, 0, 0, 131078, 0, 0, 196614, 0, 0, 262150, 0, 0, 262151, 0, 0, 196615, 0, 0, 131079, 0, 0, 131080, 0, 0, 196616, 0, 0, 262152, 0, 0, 327690, 0, 0, 393226, 0, 0, 393225, 0, 0, 393224, 0, 0, 393223, 0, 0, 393222, 0, 0, 393221, 0, 0, 393220, 0, 0, 327684, 0, 0, 262148, 0, 0, 196612, 0, 0, 131076, 0, 0, 131075, 0, 0, 131074, 0, 0, 131073, 0, 0, 131072, 0, 0, 196608, 131072, 0, 262144, 131072, 1, 393216, 131072, 1, 393217, 131072, 1, 262145, 131072, 1, 196609, 131072, 0, 196610, 131072, 0, 262146, 131072, 1, 393218, 131072, 1, 393219, 131072, 1, 262147, 131072, 1, 196611, 131072, 0, 327680, 131072, 1, 327681, 131072, 1, 327682, 131072, 1, 327683, 131072, 1)
+
+[node name="Actors" type="Node2D" parent="."]
+
+[node name="Towers" type="Node2D" parent="Actors"]
+script = ExtResource("3_7aykm")
+
+[node name="tower1" parent="Actors/Towers" instance=ExtResource("4_jw08p")]
+position = Vector2(575, 320)
+
+[node name="Enemies" type="Path2D" parent="Actors"]
+curve = SubResource("Curve2D_6s7ni")
+script = ExtResource("4_h2dur")
+
+[node name="enemy1" parent="Actors/Enemies" instance=ExtResource("3_52c4a")]
+position = Vector2(-1, 193)
+rotation = 0.011283
+
+[node name="AttackArrow" parent="Actors" instance=ExtResource("6_eg2gy")]
+position = Vector2(708, 658)
+
+[node name="Projectiles" type="Node" parent="Actors"]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerSpawb" type="Timer" parent="."]
+wait_time = 0.9
+one_shot = true
+autostart = true
+
+[connection signal="attackerized" from="Actors/Towers" to="." method="_on_towers_attackerized"]
+[connection signal="damagerizer" from="Actors/Enemies" to="." method="_on_enemies_damagerizer"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TimerSpawb" to="." method="_on_timer_spawb_timeout"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://kges880beft0"]
+
+[ext_resource type="Script" path="res://scenes/actorsss/tower_1.gd" id="1_0xcb0"]
+[ext_resource type="Texture2D" uid="uid://c7v1iprjidvr5" path="res://icon.svg" id="1_3jqxn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nua8v"]
+radius = 271.77
+
+[node name="tower1" type="Node2D"]
+script = ExtResource("1_0xcb0")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_nua8v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3jqxn")
+
+[node name="CanAttacj" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="timeout" from="CanAttacj" to="." method="_on_can_attacj_timeout"]
