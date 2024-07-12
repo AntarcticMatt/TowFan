@@ -13,7 +13,7 @@ func _process(delta):
 
 
 func _on_area_entered(area):
-	print("felebe")
+#	print("felebe")
 	if "hit" in area:
 		area.hit()
 		queue_free()

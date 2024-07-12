@@ -5,6 +5,7 @@ var proj: PackedScene = preload("res://scenes/actorsss/effects/attack_arrow.tscn
 var focus = null
 var canAttack: bool = true
 var parentNode = null
+var fireInterval: float = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,12 +15,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if focus != null:
-		look_at(focus.global_position)
+#		look_at(focus.global_position)
 		if canAttack:
-#			look_at(focus.global_position)
-			print("sspawb")
+			look_at(focus.global_position)
 			parentNode.shooted(proj, position, rotation)
 			canAttack = false
+			if fireInterval > 0.2:
+				fireInterval -= 0.025
+				$CanAttacj.wait_time = fireInterval
 			$CanAttacj.start()
 
 
