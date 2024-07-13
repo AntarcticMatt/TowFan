@@ -2,8 +2,9 @@ extends Node2D
 
 var tower1Scene: PackedScene = preload("res://scenes/actorsss/tower_1.tscn")
 var enemyScene: PackedScene = preload("res://scenes/actorsss/enemy_1.tscn")
+var enemySceneBoss: PackedScene = preload("res://scenes/actorsss/enemy_Boss.tscn")
 var canUnit: bool = true
-var hp: int = 20
+var hp: int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,12 +29,16 @@ func _on_timer_timeout():
 func _on_timer_spawb_timeout():
 	$Actors/Enemies.add_child(enemyScene.instantiate())
 	$TimerSpawb.start()
+	
+func _on_timer_spawb_Boss_timeout():
+	$Actors/Enemies.add_child(enemySceneBoss.instantiate())
 
 
 func _on_enemies_damagerizer(amt):
 	hp -= amt
 	print(hp)
-
+	if hp <= 0:
+		get_tree().quit()
 
 func _on_towers_attackerized(proj, locat, direc):
 #	print("Laser from level")

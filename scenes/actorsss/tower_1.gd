@@ -20,7 +20,7 @@ func _process(delta):
 			look_at(focus.global_position)
 			parentNode.shooted(proj, position, rotation)
 			canAttack = false
-			if fireInterval > 0.1:
+			if fireInterval > 0.2:
 				fireInterval -= 0.025
 				$CanAttacj.wait_time = fireInterval
 			$CanAttacj.start()
