@@ -4,7 +4,7 @@ var tower1Scene: PackedScene = preload("res://scenes/actorsss/tower_1.tscn")
 var enemyScene: PackedScene = preload("res://scenes/actorsss/enemy_1.tscn")
 var enemySceneBoss: PackedScene = preload("res://scenes/actorsss/enemy_Boss.tscn")
 var canUnit: bool = true
-var hp: int = 1
+var hp: int = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

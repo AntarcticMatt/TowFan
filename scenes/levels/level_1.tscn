@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bf7ac1gwb6is6"]
+[gd_scene load_steps=21 format=3 uid="uid://bf7ac1gwb6is6"]
 
 [ext_resource type="Texture2D" uid="uid://cjograanstoq" path="res://sprites/TerrainSet.png" id="1_fm0r2"]
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_sa31g"]
@@ -8,57 +8,46 @@
 [ext_resource type="PackedScene" uid="uid://kges880beft0" path="res://scenes/actorsss/tower_1.tscn" id="4_jw08p"]
 [ext_resource type="PackedScene" uid="uid://b67ew37r8gyb4" path="res://scenes/actorsss/effects/attack_arrow.tscn" id="6_eg2gy"]
 [ext_resource type="PackedScene" uid="uid://bh80o7g7tboeg" path="res://scenes/actorsss/enemy_boss.tscn" id="7_revup"]
+[ext_resource type="PackedScene" uid="uid://dkuilrgho2xnc" path="res://scenes/actorsss/enemy_nav_1.tscn" id="9_x6s7u"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_2w6mv"]
-vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_my5wk"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ij3nl"]
-source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_tffva"]
 vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_benre"]
 vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5ryhk"]
 vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_in02o"]
 vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jg58b"]
 vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8a6i0"]
 vertices = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ifn2b"]
 texture = ExtResource("1_fm0r2")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
-0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_2w6mv")
 0:0/0/navigation_layer_1/polygon = SubResource("NavigationPolygon_ij3nl")
 0:0/0/navigation_layer_2/polygon = SubResource("NavigationPolygon_tffva")
 0:0/0/navigation_layer_3/polygon = SubResource("NavigationPolygon_benre")
@@ -76,7 +65,6 @@ texture_region_size = Vector2i(128, 128)
 1:1/0 = 0
 1:1/0/navigation_layer_4/polygon = SubResource("NavigationPolygon_jg58b")
 2:1/0 = 0
-2:1/0/navigation_layer_2/polygon = SubResource("NavigationPolygon_tffva")
 2:1/0/navigation_layer_3/polygon = SubResource("NavigationPolygon_benre")
 
 [sub_resource type="TileSet" id="TileSet_24s0y"]
@@ -97,7 +85,11 @@ point_count = 6
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_sa31g")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_my5wk")
+navigation_layers = 31
+
+[node name="TileMap" type="TileMap" parent="NavigationRegion2D"]
 tile_set = SubResource("TileSet_24s0y")
 format = 2
 layer_0/name = "Color"
@@ -135,6 +127,13 @@ one_shot = true
 wait_time = 0.9
 one_shot = true
 autostart = true
+
+[node name="enemyNav1" parent="." node_paths=PackedStringArray("target") instance=ExtResource("9_x6s7u")]
+position = Vector2(106, 191)
+target = NodePath("../Target")
+
+[node name="Target" type="Node2D" parent="."]
+position = Vector2(1035, 189)
 
 [connection signal="attackerized" from="Actors/Towers" to="." method="_on_towers_attackerized"]
 [connection signal="damagerizer" from="Actors/Enemies" to="." method="_on_enemies_damagerizer"]
