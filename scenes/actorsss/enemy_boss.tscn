@@ -8,6 +8,7 @@
 size = Vector2(575, 390)
 
 [node name="enemy_Boss" type="PathFollow2D"]
+loop = false
 script = ExtResource("1_oqbqo")
 
 [node name="BossEnemy-removebg-preview" type="Sprite2D" parent="."]
@@ -29,3 +30,5 @@ shape = SubResource("RectangleShape2D_vpbqh")
 position = Vector2(7.62939e-06, -1.19209e-07)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_e7wxj")
+
+[connection signal="deathNow" from="Area2D" to="." method="_on_area_2d_death_now"]
