@@ -19,11 +19,12 @@ texture = ExtResource("1_40di7")
 shape = SubResource("RectangleShape2D_40v6v")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_max_distance = 2000.0
+navigation_layers = 15
 path_postprocessing = 1
 debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
