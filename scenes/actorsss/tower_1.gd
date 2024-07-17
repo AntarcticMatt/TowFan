@@ -24,6 +24,9 @@ func _process(delta):
 				fireInterval -= 0.025
 				$CanAttacj.wait_time = fireInterval
 			$CanAttacj.start()
+	else:
+		if $Area2D.get_overlapping_bodies().is_empty() == false:
+			focus = $Area2D.get_overlapping_bodies()[0]
 
 
 func _on_area_2d_area_entered(area):

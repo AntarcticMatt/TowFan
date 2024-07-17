@@ -8,6 +8,7 @@ size = Vector2(51, 77)
 
 [node name="enemyNav1" type="CharacterBody2D"]
 collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_k7c5v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -1,8 +1,9 @@
 extends CharacterBody2D
-class_name NavEnemy
+class_name NavActor
 
 @export var MAX_SPEED = 150
 @export var target: Node2D
+@export var hp = 5
 
 @onready var navigation_agent := $NavigationAgent2D as NavigationAgent2D
 
@@ -16,3 +17,8 @@ func create_path():
 
 func _on_timer_timeout():
 	create_path()
+
+func hit():
+	hp -= 1
+	if hp <= 0:
+		queue_free()
