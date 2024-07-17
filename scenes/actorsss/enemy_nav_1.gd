@@ -1,11 +1,12 @@
 extends CharacterBody2D
+class_name NavEnemy
 
 @export var MAX_SPEED = 150
 @export var target: Node2D
 
 @onready var navigation_agent := $NavigationAgent2D as NavigationAgent2D
 
-func _physics_process(delta):
+func _process(delta):
 	var direction = to_local(navigation_agent.get_next_path_position()).normalized()
 	velocity = direction * MAX_SPEED
 	move_and_slide()
