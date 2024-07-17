@@ -5,14 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://yisgtgxlr83s" path="res://sprites/BossEnemy-removebg-preview.png" id="3_e7wxj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vpbqh"]
-size = Vector2(575, 390)
+size = Vector2(557.5, 375)
 
 [node name="enemy_Boss" type="PathFollow2D"]
 loop = false
 script = ExtResource("1_oqbqo")
-
-[node name="BossEnemy-removebg-preview" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(1, 25)
@@ -22,7 +19,7 @@ collision_mask = 0
 script = ExtResource("3_3wurr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-10, -250)
+position = Vector2(-1.25014, -257.5)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_vpbqh")
 
