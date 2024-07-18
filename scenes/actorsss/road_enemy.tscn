@@ -5,6 +5,8 @@
 
 [node name="RoadEnemy" instance=ExtResource("1_r6dtl")]
 script = ExtResource("2_xulj4")
+hp = 20
+dmg = 4
 
 [node name="NavigationAgent2D" parent="." index="2"]
 navigation_layers = 1

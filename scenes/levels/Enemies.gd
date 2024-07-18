@@ -1,4 +1,4 @@
-extends Path2D
+extends Node2D
 
 signal damagerizer(amt)
 

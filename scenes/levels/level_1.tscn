@@ -1,14 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://bf7ac1gwb6is6"]
+[gd_scene load_steps=14 format=3 uid="uid://bf7ac1gwb6is6"]
 
 [ext_resource type="Texture2D" uid="uid://cjograanstoq" path="res://sprites/TerrainSet.png" id="1_fm0r2"]
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_sa31g"]
 [ext_resource type="Script" path="res://scenes/levels/Towers.gd" id="3_7aykm"]
-[ext_resource type="PackedScene" uid="uid://dkktgt5xu4ept" path="res://scenes/actorsss/enemy_1.tscn" id="3_52c4a"]
 [ext_resource type="Script" path="res://scenes/levels/Enemies.gd" id="4_h2dur"]
 [ext_resource type="PackedScene" uid="uid://kges880beft0" path="res://scenes/actorsss/tower_1.tscn" id="4_jw08p"]
-[ext_resource type="PackedScene" uid="uid://bh80o7g7tboeg" path="res://scenes/actorsss/enemy_boss.tscn" id="7_revup"]
-[ext_resource type="PackedScene" uid="uid://dkuilrgho2xnc" path="res://scenes/actorsss/enemy_nav_1.tscn" id="9_x6s7u"]
-[ext_resource type="PackedScene" uid="uid://drgxmcvwmmc0x" path="res://scenes/actorsss/road_enemy.tscn" id="10_xt3tc"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_tx0hv"]
 source_geometry_group_name = &"navigation_polygon_source_group"
@@ -68,12 +64,6 @@ navigation_layer_2/layers = 12
 navigation_layer_3/layers = 8
 sources/0 = SubResource("TileSetAtlasSource_ifn2b")
 
-[sub_resource type="Curve2D" id="Curve2D_6s7ni"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -1, 193, 0, 0, 0, 0, 708, 201, 0, 0, 0, 0, 714, 711, 0, 0, 0, 0, 1213, 703, 0, 0, 0, 0, 1212, 196, 0, 0, 0, 0, 1024, 194)
-}
-point_count = 6
-
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_sa31g")
 
@@ -91,17 +81,9 @@ script = ExtResource("3_7aykm")
 [node name="tower1" parent="Actors/Towers" instance=ExtResource("4_jw08p")]
 position = Vector2(575, 320)
 
-[node name="Enemies" type="Path2D" parent="Actors"]
-curve = SubResource("Curve2D_6s7ni")
+[node name="Enemies" type="Node2D" parent="Actors"]
+position = Vector2(3, 188)
 script = ExtResource("4_h2dur")
-
-[node name="enemy1" parent="Actors/Enemies" instance=ExtResource("3_52c4a")]
-position = Vector2(-1, 193)
-rotation = 0.011283
-
-[node name="enemy_Boss" parent="Actors/Enemies" instance=ExtResource("7_revup")]
-position = Vector2(-1, 193)
-rotation = 0.011283
 
 [node name="Projectiles" type="Node" parent="Actors"]
 
@@ -113,17 +95,10 @@ wait_time = 0.9
 one_shot = true
 autostart = true
 
-[node name="enemyNav1" parent="." node_paths=PackedStringArray("target") instance=ExtResource("9_x6s7u")]
-position = Vector2(106, 191)
-target = NodePath("../Target")
-
 [node name="Target" type="Node2D" parent="."]
 position = Vector2(1035, 189)
 
-[node name="RoadEnemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("10_xt3tc")]
-position = Vector2(-8, 184)
-collision_mask = 1
-target = NodePath("../Target")
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="attackerized" from="Actors/Towers" to="." method="_on_towers_attackerized"]
 [connection signal="damagerizer" from="Actors/Enemies" to="." method="_on_enemies_damagerizer"]

@@ -1,10 +1,11 @@
 extends Node2D
 
 var tower1Scene: PackedScene = preload("res://scenes/actorsss/tower_1.tscn")
-var enemyScene: PackedScene = preload("res://scenes/actorsss/enemy_1.tscn")
-var enemySceneBoss: PackedScene = preload("res://scenes/actorsss/enemy_Boss.tscn")
+var enemyScene: PackedScene = preload("res://scenes/actorsss/road_enemy.tscn")
+var enemySceneBoss: PackedScene = preload("res://scenes/actorsss/road_boss.tscn")
 var canUnit: bool = true
 var hp: int = 100
+var count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,7 +28,16 @@ func _on_timer_timeout():
 
 
 func _on_timer_spawb_timeout():
-	$Actors/Enemies.add_child(enemyScene.instantiate())
+	var gef = null
+	if count >= 10:
+		gef = enemySceneBoss.instantiate()
+		count = 0
+	else:
+		gef = enemyScene.instantiate()
+		count += 1
+	gef.set_target($Target)
+	gef.set_parent($Actors/Enemies)
+	$Actors/Enemies.add_child(gef)
 	$TimerSpawb.start()
 	
 func _on_timer_spawb_Boss_timeout():

@@ -12,12 +12,11 @@ func _process(delta):
 	position += direction * sped * delta
 
 
-func _on_area_entered(area):
-#	print("felebe")
-	if "hit" in area:
-		area.hit()
-		queue_free()
-
-
 func _on_death_timeout():
 	queue_free()
+
+
+func _on_body_entered(body):
+	if "hit" in body:
+		body.hit(5)
+		queue_free()

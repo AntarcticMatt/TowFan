@@ -2,5 +2,5 @@ extends Area2D
 
 signal deathNow
 
-func hit():
+func hit(_amt):
 	deathNow.emit()
