@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://biitb0x8nnh7r"]
+
+[ext_resource type="PackedScene" uid="uid://of1ulwxj1t5x" path="res://scenes/actorsss/nav_actor.tscn" id="1_btgnd"]
+[ext_resource type="Script" path="res://scenes/actorsss/nav_enemy.gd" id="2_gvabc"]
+[ext_resource type="Texture2D" uid="uid://cjograanstoq" path="res://sprites/TerrainSet.png" id="2_p3ij0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_42dhs"]
+size = Vector2(38, 58)
+
+[node name="NavEnemy" instance=ExtResource("1_btgnd")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_gvabc")
+hp = 5
+dmg = 1
+
+[node name="Sprite2D" parent="." index="0"]
+rotation = 1.5708
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_p3ij0")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_42dhs")

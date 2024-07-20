@@ -11,7 +11,6 @@ var fireInterval: float = 1
 func _ready():
 	parentNode = get_parent()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if focus != null:

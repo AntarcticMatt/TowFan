@@ -1,12 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://drgxmcvwmmc0x"]
+[gd_scene load_steps=2 format=3 uid="uid://cf07fjgv3svml"]
 
-[ext_resource type="PackedScene" uid="uid://dkuilrgho2xnc" path="res://scenes/actorsss/enemy_nav_1.tscn" id="1_r6dtl"]
-[ext_resource type="Script" path="res://scenes/actorsss/road_enemy.gd" id="2_xulj4"]
+[ext_resource type="PackedScene" uid="uid://biitb0x8nnh7r" path="res://scenes/actorsss/nav_enemy.tscn" id="1_htxsv"]
 
-[node name="RoadEnemy" instance=ExtResource("1_r6dtl")]
-script = ExtResource("2_xulj4")
+[node name="RoadEnemy" instance=ExtResource("1_htxsv")]
 hp = 20
-dmg = 4
-
-[node name="NavigationAgent2D" parent="." index="2"]
-navigation_layers = 1
+dmg = 5
+MAX_SPEED = 200

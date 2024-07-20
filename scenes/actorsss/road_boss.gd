@@ -1,5 +1,6 @@
 extends NavEnemy
 
-func _ready():
-	set_damage(20)
-	set_speed(300)
+func hit(amt:int = 1):
+	hp -= amt - 3
+	if hp <= 0:
+		queue_free()

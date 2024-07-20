@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scenes/levels/Towers.gd" id="3_7aykm"]
 [ext_resource type="Script" path="res://scenes/levels/Enemies.gd" id="4_h2dur"]
 [ext_resource type="PackedScene" uid="uid://kges880beft0" path="res://scenes/actorsss/tower_1.tscn" id="4_jw08p"]
-[ext_resource type="Script" path="res://scenes/levels/MovingCam.gd" id="6_erl0s"]
+[ext_resource type="Script" path="res://scenes/levels/CamTarget.gd" id="6_dvfpp"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_tx0hv"]
 source_geometry_group_name = &"navigation_polygon_source_group"
@@ -99,9 +99,12 @@ autostart = true
 [node name="Target" type="Node2D" parent="."]
 position = Vector2(1035, 189)
 
-[node name="MovingCam" type="Camera2D" parent="."]
+[node name="CamTarget" type="Node2D" parent="."]
+script = ExtResource("6_dvfpp")
+
+[node name="MovingCam" type="Camera2D" parent="CamTarget"]
 anchor_mode = 0
-script = ExtResource("6_erl0s")
+position_smoothing_enabled = true
 
 [connection signal="attackerized" from="Actors/Towers" to="." method="_on_towers_attackerized"]
 [connection signal="damagerizer" from="Actors/Enemies" to="." method="_on_enemies_damagerizer"]

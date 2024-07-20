@@ -1,20 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhbbd8uqepoqc"]
+[gd_scene load_steps=5 format=3 uid="uid://bd8stlfk2sp3e"]
 
-[ext_resource type="PackedScene" uid="uid://drgxmcvwmmc0x" path="res://scenes/actorsss/road_enemy.tscn" id="1_mrr5x"]
+[ext_resource type="PackedScene" uid="uid://biitb0x8nnh7r" path="res://scenes/actorsss/nav_enemy.tscn" id="1_57egl"]
 [ext_resource type="Script" path="res://scenes/actorsss/road_boss.gd" id="2_2g2bs"]
 [ext_resource type="Texture2D" uid="uid://yisgtgxlr83s" path="res://sprites/BossEnemy-removebg-preview.png" id="3_ufs44"]
 
-[node name="RoadBoss" instance=ExtResource("1_mrr5x")]
-script = ExtResource("2_2g2bs")
-hp = 40
-dmg = 30
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pjqnf"]
+size = Vector2(49, 35)
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="RoadBoss" instance=ExtResource("1_57egl")]
+script = ExtResource("2_2g2bs")
+hp = 200
+dmg = 50
+MAX_SPEED = 100
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(-2.5, 0.5)
+shape = SubResource("RectangleShape2D_pjqnf")
+
+[node name="Sprite2D" parent="." index="2"]
+position = Vector2(13, 1)
 rotation = 0.0
 texture = ExtResource("3_ufs44")
-
-[node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(4.5, 0)
-
-[node name="NavigationAgent2D" parent="." index="2"]
-navigation_layers = 8

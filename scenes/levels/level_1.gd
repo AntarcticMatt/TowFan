@@ -1,6 +1,7 @@
 extends Node2D
 
 var tower1Scene: PackedScene = preload("res://scenes/actorsss/tower_1.tscn")
+var navTower: PackedScene = preload("res://scenes/actorsss/nav_tower.tscn")
 var enemyScene: PackedScene = preload("res://scenes/actorsss/road_enemy.tscn")
 var enemySceneBoss: PackedScene = preload("res://scenes/actorsss/road_boss.tscn")
 var canUnit: bool = true
@@ -16,8 +17,10 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("AddUnit") and canUnit:
 		var pos = get_global_mouse_position()
-		var tower = tower1Scene.instantiate() as Node2D
-		tower.position = pos
+		var tower = navTower.instantiate() as Node2D
+		tower.position = $Target.global_position
+		tower.set_target(pos)
+		tower.set_parent($Actors/Towers)
 		canUnit = false
 		$Timer.start()
 		$Actors/Towers.add_child(tower)
@@ -35,7 +38,7 @@ func _on_timer_spawb_timeout():
 	else:
 		gef = enemyScene.instantiate()
 		count += 1
-	gef.set_target($Target)
+	gef.set_target($Target.global_position)
 	gef.set_parent($Actors/Enemies)
 	$Actors/Enemies.add_child(gef)
 	$TimerSpawb.start()
