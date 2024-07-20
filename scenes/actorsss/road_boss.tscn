@@ -10,7 +10,11 @@ hp = 40
 dmg = 30
 
 [node name="Sprite2D" parent="." index="0"]
+rotation = 0.0
 texture = ExtResource("3_ufs44")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(4.5, 0)
 
 [node name="NavigationAgent2D" parent="." index="2"]
 navigation_layers = 8

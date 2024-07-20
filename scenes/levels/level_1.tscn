@@ -83,7 +83,7 @@ script = ExtResource("3_7aykm")
 position = Vector2(575, 320)
 
 [node name="Enemies" type="Node2D" parent="Actors"]
-position = Vector2(3, 188)
+position = Vector2(-66, 188)
 script = ExtResource("4_h2dur")
 
 [node name="Projectiles" type="Node" parent="Actors"]

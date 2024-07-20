@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://of1ulwxj1t5x"]
+
+[ext_resource type="Script" path="res://scenes/actorsss/nav_actor.gd" id="1_5tu0o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6aqxw"]
+
+[node name="NavActor" type="CharacterBody2D"]
+script = ExtResource("1_5tu0o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6aqxw")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Pather" type="Timer" parent="."]
+
+[connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]
+[connection signal="timeout" from="Pather" to="." method="_on_pather_timeout"]
