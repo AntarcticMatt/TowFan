@@ -4,6 +4,7 @@ var tower1Scene: PackedScene = preload("res://scenes/actorsss/tower_1.tscn")
 var navTower: PackedScene = preload("res://scenes/actorsss/nav_tower.tscn")
 var enemyScene: PackedScene = preload("res://scenes/actorsss/road_enemy.tscn")
 var enemySceneBoss: PackedScene = preload("res://scenes/actorsss/road_boss.tscn")
+var selected: Node2D = null
 var canUnit: bool = true
 var hp: int = 100
 var count = 0
@@ -24,11 +25,16 @@ func _process(delta):
 		canUnit = false
 		$Timer.start()
 		$Actors/Towers.add_child(tower)
+	if Input.is_action_just_pressed("SpawnUnit"):
+		handle_spawn(enemySceneBoss.instantiate())
+	if Input.is_action_just_pressed("Select"):
+		$Selector.position = get_global_mouse_position()
+		selected = $Selector.give_body()
+		handle_selector()
 
 
 func _on_timer_timeout():
 	canUnit = true
-
 
 func _on_timer_spawb_timeout():
 	var gef = null
@@ -38,20 +44,31 @@ func _on_timer_spawb_timeout():
 	else:
 		gef = enemyScene.instantiate()
 		count += 1
-	gef.set_target($Target.global_position)
-	gef.set_parent($Actors/Enemies)
-	$Actors/Enemies.add_child(gef)
-	$TimerSpawb.start()
-	
-func _on_timer_spawb_Boss_timeout():
-	$Actors/Enemies.add_child(enemySceneBoss.instantiate())
+	handle_spawn(gef)
 
+func handle_spawn(dude:Node2D):
+	dude.set_target($Target.global_position)
+	dude.set_parent($Actors/Enemies)
+	$Actors/Enemies.add_child(dude)
+	$TimerSpawb.start()
+
+func handle_selector():
+	if(selected == null):
+		$CamTarget/MovingCam/Panel.visible = false
+	else:
+		if(selected is NavEnemy):
+			$CamTarget/MovingCam/Panel/HPFire.text = "HP: " + str(selected.hp)
+			$CamTarget/MovingCam/Panel/Speed.text = "Speed: " + str(selected.get_speed())
+		else:
+			$CamTarget/MovingCam/Panel/HPFire.text = "Fire Interval: " + str(selected.fireInterval)
+			$CamTarget/MovingCam/Panel/Speed.text = "Speed: " + str(selected.get_speed())
+		$CamTarget/MovingCam/Panel.visible = true
 
 func _on_enemies_damagerizer(amt):
 	hp -= amt
 	print(hp)
 	if hp <= 0:
-		get_tree().quit()
+		get_tree().change_scene_to_file("res://scenes/levels/GameOver.tscn")
 
 func _on_towers_attackerized(proj, locat, direc):
 #	print("Laser from level")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bf7ac1gwb6is6"]
+[gd_scene load_steps=16 format=3 uid="uid://bf7ac1gwb6is6"]
 
 [ext_resource type="Texture2D" uid="uid://cjograanstoq" path="res://sprites/TerrainSet.png" id="1_fm0r2"]
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_sa31g"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/levels/Enemies.gd" id="4_h2dur"]
 [ext_resource type="PackedScene" uid="uid://kges880beft0" path="res://scenes/actorsss/tower_1.tscn" id="4_jw08p"]
 [ext_resource type="Script" path="res://scenes/levels/CamTarget.gd" id="6_dvfpp"]
+[ext_resource type="PackedScene" uid="uid://2kwathuknwi" path="res://scenes/actorsss/effects/selector.tscn" id="7_kfx3y"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_tx0hv"]
 source_geometry_group_name = &"navigation_polygon_source_group"
@@ -105,6 +106,27 @@ script = ExtResource("6_dvfpp")
 [node name="MovingCam" type="Camera2D" parent="CamTarget"]
 anchor_mode = 0
 position_smoothing_enabled = true
+
+[node name="Panel" type="Panel" parent="CamTarget/MovingCam"]
+offset_left = 951.0
+offset_top = 446.0
+offset_right = 1151.0
+offset_bottom = 646.0
+
+[node name="HPFire" type="Label" parent="CamTarget/MovingCam/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 10
+
+[node name="Speed" type="Label" parent="CamTarget/MovingCam/Panel"]
+layout_mode = 0
+offset_top = 97.0
+offset_right = 40.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 10
+
+[node name="Selector" parent="." instance=ExtResource("7_kfx3y")]
 
 [connection signal="attackerized" from="Actors/Towers" to="." method="_on_towers_attackerized"]
 [connection signal="damagerizer" from="Actors/Enemies" to="." method="_on_enemies_damagerizer"]

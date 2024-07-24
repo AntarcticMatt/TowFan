@@ -26,6 +26,9 @@ func set_target(nodee:Vector2):
 func set_speed(amt:int):
 	MAX_SPEED = amt
 
+func get_speed() -> int:
+	return MAX_SPEED
+
 func set_parent(nod:Node2D):
 	parentNode = nod
 
