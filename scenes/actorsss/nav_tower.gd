@@ -17,6 +17,7 @@ func attackProcess():
 		if canAttack:
 			parentNode.shooted(proj, position, get_angle_to(focus.global_position))
 			canAttack = false
+			$AudioStreamPlayer2D.pitch_scale = randf_range(0.8, 1.2)
 			$AudioStreamPlayer2D.play()
 			if fireInterval > rampedInterval:
 				fireInterval -= 0.025

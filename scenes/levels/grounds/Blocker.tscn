@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwhahmbeoshlu"]
+
+[ext_resource type="PackedScene" uid="uid://bvkw4fsn3wc0n" path="res://scenes/levels/grounds/road.tscn" id="1_wq54o"]
+[ext_resource type="Texture2D" uid="uid://4c5px42c7qox" path="res://sprites/grounds/RoadBlack.png" id="2_ni3su"]
+
+[node name="Road" instance=ExtResource("1_wq54o")]
+texture = ExtResource("2_ni3su")
+
+[node name="NavigationRegion2D" parent="." index="0"]
+navigation_layers = 0

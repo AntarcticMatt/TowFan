@@ -1,0 +1,28 @@
+[gd_scene load_steps=10 format=3 uid="uid://ctuvqp0y4aqpt"]
+
+[ext_resource type="PackedScene" uid="uid://bwhahmbeoshlu" path="res://scenes/levels/grounds/Blocker.tscn" id="2_ag385"]
+[ext_resource type="Script" path="res://scenes/levels/meta_map.gd" id="2_o2fol"]
+[ext_resource type="PackedScene" uid="uid://y1bwsyt7vv0e" path="res://scenes/levels/grounds/Forrest.tscn" id="3_hve5n"]
+[ext_resource type="PackedScene" uid="uid://c7yqh7folhnlg" path="res://scenes/levels/grounds/Grass.tscn" id="4_gb4si"]
+[ext_resource type="PackedScene" uid="uid://bvkw4fsn3wc0n" path="res://scenes/levels/grounds/road.tscn" id="5_b8ywa"]
+[ext_resource type="PackedScene" uid="uid://ddck2wo7qghov" path="res://scenes/levels/grounds/Sand.tscn" id="6_hxmvs"]
+[ext_resource type="PackedScene" uid="uid://bspjiv6kxs5r0" path="res://scenes/levels/grounds/Water.tscn" id="7_5tuct"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_hjju5"]
+scenes/1/scene = ExtResource("2_ag385")
+scenes/2/scene = ExtResource("3_hve5n")
+scenes/3/scene = ExtResource("4_gb4si")
+scenes/4/scene = ExtResource("5_b8ywa")
+scenes/5/scene = ExtResource("6_hxmvs")
+scenes/6/scene = ExtResource("7_5tuct")
+
+[sub_resource type="TileSet" id="TileSet_p8xth"]
+tile_size = Vector2i(128, 128)
+navigation_layer_0/layers = 15
+sources/1 = SubResource("TileSetScenesCollectionSource_hjju5")
+
+[node name="MetaMap" type="TileMap"]
+tile_set = SubResource("TileSet_p8xth")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1, 262144, 1, 1, 262144, -65535, 1, 196608, -65536, 1, 196608, -1, 1, 131072, 65535, 1, 262144, 131071, 1, 131072, 65536, 1, 327680, 65537, 1, 327680, 2, 1, 262144, 65538, 1, 262144, 131074, 1, 262144, 131075, 1, 262144, 131076, 1, 262144, 65540, 1, 262144, 4, 1, 262144, 5, 1, 262144, 6, 1, 262144, 65542, 1, 262144, 131078, 1, 262144, 3, 1, 196608, 65539, 1, 196608, 65541, 1, 196608, 131077, 1, 196608, -65534, 1, 196608, -65533, 1, 196608, -65532, 1, 196608, -65531, 1, 196608, -65530, 1, 196608, -131066, 1, 131072, -131065, 1, 131072, -65529, 1, 131072, 7, 1, 131072, 65543, 1, 131072, 131079, 1, 131072, -131072, 1, 131072, -131071, 1, 131072, -131070, 1, 131072, -131069, 1, 131072, -131068, 1, 131072, -131067, 1, 131072, -65537, 1, 131072, 131072, 1, 393216, 131073, 1, 393216, 196608, 1, 393216, 196609, 1, 393216, 196610, 1, 393216, 196611, 1, 393216, 196612, 1, 393216, 196615, 1, 131072, 196607, 1, 131072, 262143, 1, 131072, 196614, 1, 262144, 196613, 1, 131072)
+script = ExtResource("2_o2fol")

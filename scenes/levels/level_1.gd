@@ -6,16 +6,18 @@ var enemyScene: PackedScene = preload("res://scenes/actorsss/road_enemy.tscn")
 var enemySceneBoss: PackedScene = preload("res://scenes/actorsss/road_boss.tscn")
 var selected: Node2D = null
 var canUnit: bool = true
-var hp: int = 100
+var hp: int = 10000
+var monies: int = 0
 var count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(delta):	
+	handle_selector()
+	handle_ui()
 	if Input.is_action_just_pressed("AddUnit") and canUnit:
 		var pos = get_global_mouse_position()
 		var tower = navTower.instantiate() as Node2D
@@ -28,10 +30,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("SpawnUnit"):
 		handle_spawn(enemySceneBoss.instantiate())
 	if Input.is_action_just_pressed("Select"):
-		$Selector.position = get_global_mouse_position()
 		selected = $Selector.give_body()
-		handle_selector()
-
 
 func _on_timer_timeout():
 	canUnit = true
@@ -53,6 +52,7 @@ func handle_spawn(dude:Node2D):
 	$TimerSpawb.start()
 
 func handle_selector():
+	$Selector.position = get_global_mouse_position()
 	if(selected == null):
 		$CamTarget/MovingCam/Panel.visible = false
 	else:
@@ -60,9 +60,12 @@ func handle_selector():
 			$CamTarget/MovingCam/Panel/HPFire.text = "HP: " + str(selected.hp)
 			$CamTarget/MovingCam/Panel/Speed.text = "Speed: " + str(selected.get_speed())
 		else:
-			$CamTarget/MovingCam/Panel/HPFire.text = "Fire Interval: " + str(selected.fireInterval)
+			$CamTarget/MovingCam/Panel/HPFire.text = "Fire Rate: " + str(snapped(1 / selected.fireInterval, 0.1))
 			$CamTarget/MovingCam/Panel/Speed.text = "Speed: " + str(selected.get_speed())
 		$CamTarget/MovingCam/Panel.visible = true
+
+func handle_ui():
+	$CamTarget/MovingCam/HP.text = "HP: " + str(hp) + "\nMoney: " + str(monies)
 
 func _on_enemies_damagerizer(amt):
 	hp -= amt
@@ -81,3 +84,6 @@ func _on_towers_attackerized(proj, locat, direc):
 #	laser.rotation = $Player.rotation
 	# 3. Sort the lasers to a projectile binder
 	$Actors/Projectiles.add_child(laser)
+
+func _on_enemies_moneyizer(value):
+	monies += value

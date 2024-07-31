@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddck2wo7qghov"]
+
+[ext_resource type="PackedScene" uid="uid://bvkw4fsn3wc0n" path="res://scenes/levels/grounds/road.tscn" id="1_82gik"]
+[ext_resource type="Texture2D" uid="uid://bstuapardfogm" path="res://sprites/grounds/SandYellow.png" id="2_4aqy0"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_jtncq"]
+vertices = PackedVector2Array(64, 64, -64, 64, -64, -64, 64, -64)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
+
+[node name="Road" instance=ExtResource("1_82gik")]
+texture = ExtResource("2_4aqy0")
+
+[node name="NavigationRegion2D" parent="." index="0"]
+visible = false
+navigation_layers = 10
+
+[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="." index="1"]
+navigation_polygon = SubResource("NavigationPolygon_jtncq")
+enabled = false
+navigation_layers = 5
+enter_cost = 2.0
+travel_cost = 0.0

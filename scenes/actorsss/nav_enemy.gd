@@ -1,12 +1,16 @@
 extends NavActor
 class_name NavEnemy
 
-@export var hp = 5
-@export var dmg = 1
+@export var hp: int = 5
+@export var dmgReduction: int = 0
+@export var dmg: int = 1
+@export var value: int = 0
+
 
 func hit(amt:int = 1):
-	hp -= amt
+	hp -= max(amt - dmgReduction, 0)
 	if hp <= 0:
+		parentNode.cash_out(value)
 		queue_free()
 
 func set_damage(amt:int):

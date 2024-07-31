@@ -1,79 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://bf7ac1gwb6is6"]
+[gd_scene load_steps=8 format=3 uid="uid://bf7ac1gwb6is6"]
 
-[ext_resource type="Texture2D" uid="uid://cjograanstoq" path="res://sprites/TerrainSet.png" id="1_fm0r2"]
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_sa31g"]
+[ext_resource type="PackedScene" uid="uid://ctuvqp0y4aqpt" path="res://scenes/levels/meta_map.tscn" id="2_bgxxf"]
 [ext_resource type="Script" path="res://scenes/levels/Towers.gd" id="3_7aykm"]
 [ext_resource type="Script" path="res://scenes/levels/Enemies.gd" id="4_h2dur"]
 [ext_resource type="PackedScene" uid="uid://kges880beft0" path="res://scenes/actorsss/tower_1.tscn" id="4_jw08p"]
 [ext_resource type="Script" path="res://scenes/levels/CamTarget.gd" id="6_dvfpp"]
 [ext_resource type="PackedScene" uid="uid://2kwathuknwi" path="res://scenes/actorsss/effects/selector.tscn" id="7_kfx3y"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_tx0hv"]
-source_geometry_group_name = &"navigation_polygon_source_group"
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_as585"]
-vertices = PackedVector2Array(64, 64, -64, 64, -64, -64, 64, -64)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-agent_radius = 0.0
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_aq2s6"]
-vertices = PackedVector2Array(64, 64, -64, 64, -64, -64, 64, -64)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-agent_radius = 0.0
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_0t7m4"]
-vertices = PackedVector2Array(64, 64, -64, 64, -64, -64, 64, -64)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-agent_radius = 0.0
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_dwf7o"]
-source_geometry_group_name = &"navigation_polygon_source_group"
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_lhiq0"]
-vertices = PackedVector2Array(64, 64, -64, 64, -64, -64, 64, -64)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-agent_radius = 0.0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ifn2b"]
-texture = ExtResource("1_fm0r2")
-texture_region_size = Vector2i(128, 128)
-0:0/0 = 0
-0:0/0/navigation_layer_1/polygon = SubResource("NavigationPolygon_tx0hv")
-0:0/0/navigation_layer_2/polygon = SubResource("NavigationPolygon_as585")
-1:0/0 = 0
-1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_aq2s6")
-2:0/0 = 0
-2:0/0/navigation_layer_1/polygon = SubResource("NavigationPolygon_0t7m4")
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-2:1/0/navigation_layer_1/polygon = SubResource("NavigationPolygon_dwf7o")
-2:1/0/navigation_layer_3/polygon = SubResource("NavigationPolygon_lhiq0")
-
-[sub_resource type="TileSet" id="TileSet_24s0y"]
-tile_size = Vector2i(128, 128)
-navigation_layer_0/layers = 15
-navigation_layer_1/layers = 14
-navigation_layer_2/layers = 12
-navigation_layer_3/layers = 8
-sources/0 = SubResource("TileSetAtlasSource_ifn2b")
-
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_sa31g")
 
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource("TileSet_24s0y")
-format = 2
-layer_0/name = "Color"
-layer_0/tile_data = PackedInt32Array(65538, 65536, 0, 65537, 65536, 0, 65536, 65536, 0, 65539, 65536, 0, 65543, 65536, 1, 131077, 65536, 0, 65540, 65536, 0, 65541, 65536, 0, 327686, 65536, 0, 327687, 65536, 0, 327688, 65536, 0, 327689, 65536, 0, 262153, 65536, 0, 196617, 65536, 0, 131081, 65536, 0, 65545, 65536, 0, 196613, 65536, 0, 262149, 65536, 0, 327685, 65536, 0, 65544, 65536, 0, 262154, 0, 0, 196618, 0, 0, 131082, 0, 0, 65546, 0, 0, 10, 0, 0, 9, 0, 0, 8, 0, 0, 7, 0, 0, 6, 0, 0, 5, 0, 0, 4, 0, 0, 3, 0, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 65542, 0, 0, 131078, 0, 0, 196614, 0, 0, 262150, 0, 0, 262151, 0, 0, 196615, 0, 0, 131079, 0, 0, 131080, 0, 0, 196616, 0, 0, 262152, 0, 0, 327690, 0, 0, 393226, 0, 0, 393225, 0, 0, 393224, 0, 0, 393223, 0, 0, 393222, 0, 0, 393221, 0, 0, 393220, 0, 0, 327684, 0, 0, 262148, 0, 0, 196612, 0, 0, 131076, 0, 0, 131075, 0, 0, 131073, 0, 0, 131072, 0, 0, 196608, 131072, 0, 262144, 131072, 1, 393216, 131072, 1, 393217, 131072, 1, 262145, 131072, 1, 196609, 131072, 0, 196610, 131072, 0, 262146, 131072, 1, 393218, 131072, 1, 393219, 131072, 1, 262147, 131072, 1, 196611, 131072, 0, 327680, 131072, 1, 327681, 131072, 1, 327682, 131072, 1, 327683, 131072, 1, 131074, 0, 0)
+[node name="MetaMap" parent="." instance=ExtResource("2_bgxxf")]
 
 [node name="Actors" type="Node2D" parent="."]
 
@@ -81,10 +19,10 @@ layer_0/tile_data = PackedInt32Array(65538, 65536, 0, 65537, 65536, 0, 65536, 65
 script = ExtResource("3_7aykm")
 
 [node name="tower1" parent="Actors/Towers" instance=ExtResource("4_jw08p")]
-position = Vector2(575, 320)
+position = Vector2(447, 194)
 
 [node name="Enemies" type="Node2D" parent="Actors"]
-position = Vector2(-66, 188)
+position = Vector2(-88, 61)
 script = ExtResource("4_h2dur")
 
 [node name="Projectiles" type="Node" parent="Actors"]
@@ -98,7 +36,7 @@ one_shot = true
 autostart = true
 
 [node name="Target" type="Node2D" parent="."]
-position = Vector2(1035, 189)
+position = Vector2(834, 509)
 
 [node name="CamTarget" type="Node2D" parent="."]
 script = ExtResource("6_dvfpp")
@@ -108,6 +46,7 @@ anchor_mode = 0
 position_smoothing_enabled = true
 
 [node name="Panel" type="Panel" parent="CamTarget/MovingCam"]
+visible = false
 offset_left = 951.0
 offset_top = 446.0
 offset_right = 1151.0
@@ -126,9 +65,15 @@ offset_right = 40.0
 offset_bottom = 120.0
 theme_override_font_sizes/font_size = 10
 
+[node name="HP" type="Label" parent="CamTarget/MovingCam"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "HP: 100"
+
 [node name="Selector" parent="." instance=ExtResource("7_kfx3y")]
 
 [connection signal="attackerized" from="Actors/Towers" to="." method="_on_towers_attackerized"]
 [connection signal="damagerizer" from="Actors/Enemies" to="." method="_on_enemies_damagerizer"]
+[connection signal="moneyizer" from="Actors/Enemies" to="." method="_on_enemies_moneyizer"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="TimerSpawb" to="." method="_on_timer_spawb_timeout"]

@@ -5,4 +5,5 @@
 [node name="RoadEnemy" instance=ExtResource("1_htxsv")]
 hp = 20
 dmg = 5
+value = 3
 MAX_SPEED = 200
