@@ -20,4 +20,5 @@ travel_cost = 2.0
 
 [node name="NavigationRegion2D2" type="NavigationRegion2D" parent="." index="1"]
 navigation_polygon = SubResource("NavigationPolygon_1j7io")
+enabled = false
 travel_cost = 2.0
