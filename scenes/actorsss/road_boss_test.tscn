@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bf2syybghfprr"]
+
+[ext_resource type="PackedScene" uid="uid://biitb0x8nnh7r" path="res://scenes/actorsss/nav_enemy.tscn" id="1_wuvvx"]
+[ext_resource type="Script" path="res://scenes/actorsss/road_boss_test.gd" id="2_8l3vf"]
+[ext_resource type="Texture2D" uid="uid://yisgtgxlr83s" path="res://sprites/BossEnemy-removebg-preview.png" id="2_hme08"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pjqnf"]
+size = Vector2(49, 35)
+
+[node name="RoadBossTest" instance=ExtResource("1_wuvvx")]
+collision_layer = 0
+script = ExtResource("2_8l3vf")
+disFas = 0.0
+disSlo = 0.0
+MAX_SPEED = 200
+
+[node name="NavSlow" type="NavigationAgent2D" parent="." index="0"]
+navigation_layers = 2
+path_postprocessing = 1
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 1, 1)
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(13, 1)
+rotation = 0.0
+texture = ExtResource("2_hme08")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(-2.5, 0.5)
+shape = SubResource("RectangleShape2D_pjqnf")
+
+[node name="NavigationAgent2D" parent="." index="3"]
+navigation_layers = 1
+debug_use_custom = true
+debug_path_custom_color = Color(0, 1, 1, 1)
+
+[node name="Pather" parent="." index="4"]
+wait_time = 0.1

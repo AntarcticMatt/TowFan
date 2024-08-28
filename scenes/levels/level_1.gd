@@ -4,6 +4,7 @@ var tower1Scene: PackedScene = preload("res://scenes/actorsss/tower_1.tscn")
 var navTower: PackedScene = preload("res://scenes/actorsss/nav_tower.tscn")
 var enemyScene: PackedScene = preload("res://scenes/actorsss/road_enemy.tscn")
 var enemySceneBoss: PackedScene = preload("res://scenes/actorsss/road_boss.tscn")
+var enemySceneTest: PackedScene = preload("res://scenes/actorsss/road_boss_test.tscn")
 var selected: Node2D = null
 var canUnit: bool = true
 var hp: int = 10000
@@ -28,7 +29,7 @@ func _process(delta):
 		$Timer.start()
 		$Actors/Towers.add_child(tower)
 	if Input.is_action_just_pressed("SpawnUnit"):
-		handle_spawn(enemySceneBoss.instantiate())
+		handle_spawn(enemySceneTest.instantiate())
 	if Input.is_action_just_pressed("Select"):
 		selected = $Selector.give_body()
 
